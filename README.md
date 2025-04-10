@@ -1,2 +1,0 @@
-# hanzi-graph
-N/A
