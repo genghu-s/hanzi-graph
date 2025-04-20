@@ -28,13 +28,13 @@ LineColorMap.set("TONE_OF", "palevioletred");
 LineColorMap.set("TRANSFORMED_TO", "aqua");
 
 const NodeColorMap = new Map();
-NodeColorMap.set(0, {style: {lineWidth: 2, fill: "lightgreen", actived: {fill: "lightgreen"}}});
-NodeColorMap.set(1, {style: {lineWidth: 2, fill: "orange", actived: {fill: "orange"}}});
-NodeColorMap.set(2, {style: {lineWidth: 2, fill: "pink", actived: {fill: "pink"}}});
-NodeColorMap.set(3, {style: {lineWidth: 2, fill: "lightblue", actived: {fill: "lightblue"}}});
-NodeColorMap.set(4, {style: {lineWidth: 2, fill: "gray", actived: {fill: "gray"}}});
-NodeColorMap.set(5, {style: {lineWidth: 2, fill: "hotpink", actived: {fill: "hotpink"}}});
-NodeColorMap.set(6, {style: {lineWidth: 2, fill: "indianred", actived: {fill: "indianred"}}});
-NodeColorMap.set(7, {style: {lineWidth: 2, fill: "palevioletred", actived: {fill: "palevioletred"}}});
+NodeColorMap.set(0, {style: {lineWidth: 2, fill: "lightgreen", actived: {fill: "lightgreen"}, iconFill: "#fff",}});
+NodeColorMap.set(1, {style: {lineWidth: 2, fill: "orange", actived: {fill: "orange"}, iconFill: "#fff",}});
+NodeColorMap.set(2, {style: {lineWidth: 2, fill: "pink", actived: {fill: "pink"}, iconFill: "#fff",}});
+NodeColorMap.set(3, {style: {lineWidth: 2, fill: "lightblue", actived: {fill: "lightblue"}, iconFill: "#fff",}});
+NodeColorMap.set(4, {style: {lineWidth: 2, fill: "gray", actived: {fill: "gray"}, iconFill: "#fff",}});
+NodeColorMap.set(5, {style: {lineWidth: 2, fill: "hotpink", actived: {fill: "hotpink"}, iconFill: "#fff",}});
+NodeColorMap.set(6, {style: {lineWidth: 2, fill: "indianred", actived: {fill: "indianred"}, iconFill: "#fff",}});
+NodeColorMap.set(7, {style: {lineWidth: 2, fill: "palevioletred", actived: {fill: "palevioletred"}, iconFill: "#fff",}});
 
 export { CharColorMap, NodeColorMap, LineColorMap };

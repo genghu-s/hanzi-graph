@@ -1,4 +1,4 @@
-const nodeTooltip = (nodeTooltip: any) => {
+const NodeTooltip = (nodeTooltip: any) => {
     console.log(nodeTooltip);
     return (
         <div>
@@ -99,4 +99,4 @@ const nodeTooltip = (nodeTooltip: any) => {
     )
 };
 
-export default nodeTooltip;
+export default NodeTooltip;

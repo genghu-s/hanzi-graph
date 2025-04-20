@@ -1,5 +1,5 @@
 
-const edgeTooltip = (edge: any) => {
+const EdgeTooltip = (edge: any) => {
     return (
         <div style={{ top: `${edge.y}px`, left: `${edge.x}px`}}>
             <h4>{edge.relationshipType}</h4>
@@ -7,4 +7,4 @@ const edgeTooltip = (edge: any) => {
     );
 };
 
-export default edgeTooltip;
+export default EdgeTooltip;

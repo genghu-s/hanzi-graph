@@ -12,14 +12,15 @@ import drawGraph from '../g6/g6Factory.ts';
 
 
 const ThemeContext = createContext(null);
-function Search() {
+const Search = () =>{
     const [inputText, setInputText] = useState('');
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
+
     const ref = React.useRef(null);
     let theme = useContext(ThemeContext);
 
     const handleSearch = async () => {
-        console.log("listener added");
+        console.log("listener added with Input: " + inputText);
         
         var hop = 1;
         if (inputText.length > 1) {
@@ -28,11 +29,16 @@ function Search() {
             hop = 1;
         }
     
-        const dataFromDB = await drawGraph(inputText, ref, theme, hop);
-        setData(dataFromDB);
-        console.log("Data fetched in Search File: ");
-        console.log(data);
+        await drawGraph(inputText, ref, theme, hop)
+            .then(((dataFromDB) => setData(dataFromDB)));
     };
+    console.log("Data fetched in Search File: ");
+    console.log(data);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // handleSearch();
+    }, [])
 
     const handleAdvancedSearch = () => {
         
@@ -58,10 +64,10 @@ function Search() {
             </InputGroup>
 
             <HanziGraph
-                data={data}
+                graphData={data}
             />
         </>
     );
-}
+};
 
-export default Search
+export default Search;
