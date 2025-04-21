@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Graph, GraphData, positionOf } from "@antv/g6";
-import { Neo4jNode } from "../interfaces/Neo4jNode";
+import { Graph, GraphData, GraphEvent } from "@antv/g6";
+
+import "../css/tooltip.css";
+import createTooltipContent from "./Tooltip";
 
 // 汉
 function HanziGraph(graphData: any) {
     const [data, setData] = useState<GraphData | ((prev: GraphData) => GraphData)>();
-
+    
     let graph: Graph | null = null;
-
     useEffect(() => {            
         setData(graphData.graphData);
         console.log(data);
@@ -68,7 +69,7 @@ function HanziGraph(graphData: any) {
                     },
                     {
                         type: "hover-activate",
-                        degree: 1,
+                        degree: 0,
                     },
                     {
                         type: "lasso-select",
@@ -81,18 +82,59 @@ function HanziGraph(graphData: any) {
                     {
                         type: "tooltip",
                         key: "tooltip",
-                        trigger: "hover"
+                        trigger: "hover",
+                        enable: true,
+                        getContent: (e: any, items: Array<any>) => {
+                            return createTooltipContent(e, items[0]);
+                        }
+                    },
+                    {
+                        type: "legend",
+                        trigger: "click",
+                        nodeField: 'legendType',
+                        edgeField: 'legendType',
+                        position: 'top',
+                        gridRow: 1,
+                        gridCol: 4,
+                        itemLabelFontSize: 12,
+                        titleText: 'Legend Title',
                     }
                 ]
             });
         }
+
+        /** Adaptive window - extract the definition for easy uninstallation */
+        const handleAfterLayout = () => {
+            graph?.fitView();
+        };
 
 
         if (data !== undefined && data !== null) {
             graph.setData(data);
         }
           
-        graph.render();
+        graph.render().catch((error) => console.error(error));
+
+        graph.on(GraphEvent.AFTER_LAYOUT, handleAfterLayout);
+
+        // Register mouse actions on the graph
+        // graph.on('edge:pointerenter', (evt, item) => {
+        //     console.log(evt);
+        //     graph.setElementState(item.id, 'hover', true);
+        // });
+
+        // graph.on('edge:pointerleave', (evt) => {
+        //     console.log(evt);
+        // });
+
+        // graph.on('node:pointerenter', (evt) => {
+        //     console.log(evt);
+        // });
+
+        // graph.on('node:pointerleave', (evt) => {
+        //     console.log(evt);
+        // });
+
 
         return () => {
             const element = document.querySelector('#container');

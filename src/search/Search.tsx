@@ -49,16 +49,18 @@ const Search = () =>{
             <div data-toggle="tooltip" title="Please input one or more character for their connections (or explore more functions by clicking 'Advanced Search')">
                 请输入一个或多个汉字进行搜索（或者点击“高级搜索”探索更多功能）：
             </div>
-            <InputGroup className="searchInputGroup">
-                <Row>
-                    <Col xs="auto" >
+            <InputGroup className="searchInputGroup shadow-none">
+                <Row className="searchRow shadow-none">
+                    <Col className="searchCol shadow-none">
                         <Form.Control placeholder="search..." 
+                        className="searchText"
                         value={inputText} 
                         onChange={(e) => setInputText(e.target.value)} /></Col>
-                    <Col xs="auto" >
+                    <Col>
                         <Button variant="primary" data-toggle="tooltip" title="Search" onClick={handleSearch}>搜索</Button></Col>
-                    <Col xs="auto" >
-                        <Button variant="primary" data-toggle="tooltip" title="Advanced Search" onClick={handleAdvancedSearch}>高级搜索</Button></Col>
+                    <Col>
+                        <Button variant="primary" data-toggle="tooltip" 
+                        className="advancedSearchText" title="Advanced Search" onClick={handleAdvancedSearch}>高级搜索</Button></Col>
                 </Row>
 
             </InputGroup>
