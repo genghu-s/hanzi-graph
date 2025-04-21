@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Graph, GraphData } from "@antv/g6";
+import { Graph, GraphData, positionOf } from "@antv/g6";
 import { Neo4jNode } from "../interfaces/Neo4jNode";
 
 // 汉
@@ -12,6 +12,7 @@ function HanziGraph(graphData: any) {
         setData(graphData.graphData);
         console.log(data);
         if (graph === null) {
+            console.log("GRAPH NEW CREATION");
             graph = new Graph({
                 container: 'container',
                 width: 1200,
@@ -24,13 +25,18 @@ function HanziGraph(graphData: any) {
                 },
                 node: {
                     style: {
+                        size: 40,
                         position: 'center',
-                        style: {
-                            labelText: (d: Neo4jNode) => d?.properties?.name,
-                            labelBackground: true,
-                            iconText: (d: Neo4jNode) => d?.properties?.name,
-                            iconFill: "#fff",
-                        },
+                        label: true,
+                        labelText: d => String(d.name),
+                        labelFontSize: 14,
+                        labelFill: 'white',
+                        labelPlacement: 'center',
+                        labelTextDecorationColor: 'black',
+                        labelTextDecorationStyle: 'solid',
+                        labelBackground: false,
+                        labelBackgroundFill: 'black',
+                        iconFill: "#fff",
                     }
                 },
                 edge: {

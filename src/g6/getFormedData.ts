@@ -178,13 +178,18 @@ function getFormedData(records: any) {
                 } else if (v.hasOwnProperty('segments')) {
                     console.log("Record in getFromedData: ");
                     console.log(v);
-                    // for (let i = 0; i < v['segments'].length; i++) {
-                    //     if (v.segments[i].hasOwnProperty('relationship') && isRelationship(v.segments[i].relationship)) {
-                    //         buildNode(v.segments[i].start);
-                    //         buildNode(v.segments[i].end);
-                    //         buildEdge(v.segments[i].relationship);
-                    //     }
-                    // }
+                    // @ts-ignore
+                    for (let i = 0; i < v['segments'].length; i++) {
+                        // @ts-ignore
+                        if (v.segments[i].hasOwnProperty('relationship') && isRelationship(v.segments[i].relationship)) {
+                            // @ts-ignore
+                            buildNode(v.segments[i].start);
+                            // @ts-ignore
+                            buildNode(v.segments[i].end);
+                            // @ts-ignore
+                            buildEdge(v.segments[i].relationship);
+                        }
+                    }
                 }
             }
         });
