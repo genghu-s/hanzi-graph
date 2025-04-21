@@ -1,0 +1,20 @@
+.searchInputGroup {
+    display: ruby !important;
+}
+
+.searchRow {
+    width: 550px !important;
+    display: flex;
+}
+
+.searchCol {
+    outline: none !important;
+}
+
+.searchText {
+    width: 300px !important;
+}
+
+.advancedSearchText {
+    width: 90px !important;
+}
