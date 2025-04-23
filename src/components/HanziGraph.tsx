@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Graph, GraphData, GraphEvent } from "@antv/g6";
+import { Background, Graph, GraphData, GraphEvent } from "@antv/g6";
 
-import "../css/tooltip.css";
+import "../css/HanziGraph.css";
 import createTooltipContent from "./Tooltip";
 
 // 汉
@@ -17,7 +17,7 @@ function HanziGraph(graphData: any) {
             graph = new Graph({
                 container: 'container',
                 width: 1200,
-                height: 800,
+                height: 600,
                 layout: {
                     type: 'radial',
                     unitRadius: 70,
@@ -89,16 +89,20 @@ function HanziGraph(graphData: any) {
                         }
                     },
                     {
-                        type: "legend",
-                        trigger: "click",
+                        type: 'legend',
+                        titleText: '节点 & 关系',
                         nodeField: 'legendType',
                         edgeField: 'legendType',
-                        position: 'top',
-                        gridRow: 1,
-                        gridCol: 4,
+                        trigger: 'click',
+                        position: 'top-left',
+                        container: 'legend',
+                        // className: 'legendCanvas',
+                        orientation: 'vertical',
+                        height: 600,
+                        gridCol: 1,
+                        gridRow: 15,
                         itemLabelFontSize: 12,
-                        titleText: 'Legend Title',
-                    }
+                    },
                 ]
             });
         }
@@ -137,9 +141,13 @@ function HanziGraph(graphData: any) {
 
 
         return () => {
-            const element = document.querySelector('#container');
-            if (element !== null) {
-                element.innerHTML = '';
+            const legend = document.querySelector('.g6-legend');
+            if (legend !== null) {
+                legend.innerHTML = '';
+            }
+            const container = document.querySelector('#container');
+            if (container !== null) {
+                container.innerHTML = '';
             }
         }
     });
@@ -148,6 +156,7 @@ function HanziGraph(graphData: any) {
         <>
             <div id='container'>
             </div>
+            <div id='legend'></div>
         </>
     );
 };
