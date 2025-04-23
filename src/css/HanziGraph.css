@@ -1,0 +1,24 @@
+#container {
+    margin-top: 30px;
+    border: 1px, solid, black;
+}
+
+.tooltip {
+    opacity: 1 !important;
+}
+
+#legend {
+    width: 200px !important;
+    height: 575px !important;
+    top: -590px;
+    right: -15px;
+    border: 1px dashed green;
+    padding: 5px;
+}
+
+.legendCanvas {
+    width: 200px !important;
+    height: 600px !important;
+    top: -590px;
+    right: -15px;
+}

@@ -1,11 +1,8 @@
 const createTooltipContent = (e: any, node: any) => {
-    console.log(node);
     const outDiv = document.createElement('div');
-    // console.log(e);
     outDiv.style.width = '300px';
     var innerHTML = '';
     if (e.targetType === 'node') {
-        console.log(node);
         if (node.labels[0] == 'CHARACTER') {
             innerHTML = `
                         <h4>${node.name}</h4>

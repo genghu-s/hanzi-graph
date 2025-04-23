@@ -65,7 +65,7 @@ function getFormedData(records: any) {
                 pinyin: neo4jNode.properties.pinyin,
                 sc_meaning: neo4jNode.properties.sc_meaning,
                 pr_meaning: neo4jNode.properties.pr_meaning,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             },
             'PICTOGRAPHIC_RADICAL': {
@@ -77,7 +77,7 @@ function getFormedData(records: any) {
                 name: neo4jNode.properties.name,
                 pinyin: neo4jNode.properties.pinyin,
                 pr_meaning: neo4jNode.properties.pr_meaning,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             },
             'PHONETIC_RADICAL': {
@@ -88,7 +88,7 @@ function getFormedData(records: any) {
                 name: neo4jNode.properties.name,
                 pinyin: neo4jNode.properties.pinyin,
                 is_character: neo4jNode.properties.is_character,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             },
             'SEMANTIC_COMPONENT': {
@@ -99,7 +99,7 @@ function getFormedData(records: any) {
                 name: neo4jNode.properties.name,
                 is_character: neo4jNode.properties.is_character,
                 sc_meaning: neo4jNode.properties.sc_meaning,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             },
             'INITIAL': {
@@ -107,7 +107,7 @@ function getFormedData(records: any) {
                 label: neo4jNode.properties.name,
                 labels: neo4jNode.labels,
                 name: neo4jNode.properties.name,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             },
             'FINAL': {
@@ -119,7 +119,7 @@ function getFormedData(records: any) {
                 second_tone: neo4jNode.properties.second,
                 third_tone: neo4jNode.properties.third,
                 fourth_tone: neo4jNode.properties.fourth,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             },
             'TONE': {
@@ -128,7 +128,7 @@ function getFormedData(records: any) {
                 labels: neo4jNode.labels,
                 name: neo4jNode.properties.name,
                 english_name: neo4jNode.properties.english_name,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             },
             'COMPONENT': {
@@ -136,7 +136,7 @@ function getFormedData(records: any) {
                 label: neo4jNode.properties.name,
                 labels: neo4jNode.labels,
                 name: neo4jNode.properties.name,
-                legendType: getLegendType(neo4jNode.labels),
+                data: {legendType: getLegendType(neo4jNode.labels)},
                 style: getNodeStyle(neo4jNode.labels)
             }
             
@@ -152,7 +152,7 @@ function getFormedData(records: any) {
             source: neo4jEdge.start.toString(),
             target: neo4jEdge.end.toString(),
             relationshipType: neo4jEdge.type,
-            legendType: neo4jEdge.type,
+            data: {legendType: neo4jEdge.type},
             style: {
                 stroke: LineColorMap.get(neo4jEdge.type),
                 endArrow: {
