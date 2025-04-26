@@ -20,9 +20,10 @@ function HanziGraph(graphData: any) {
                 height: 600,
                 layout: {
                     type: 'radial',
-                    unitRadius: 70,
+                    unitRadius: 100,
                     preventOverlap: true,
                     strictRadial: false,
+                    linkDistance: 200,
                 },
                 node: {
                     style: {
@@ -30,7 +31,7 @@ function HanziGraph(graphData: any) {
                         position: 'center',
                         label: true,
                         labelText: d => String(d.name),
-                        labelFontSize: 14,
+                        labelFontSize: 16,
                         labelFill: 'white',
                         labelPlacement: 'center',
                         labelTextDecorationColor: 'black',
@@ -41,42 +42,21 @@ function HanziGraph(graphData: any) {
                     }
                 },
                 edge: {
+                    type: (d: any) => d.type, 
                     style: {
                         endArrow: true,
-                    }
+                        label: false,
+                        stoke: (d: any) => d.style.stroke,
+                        labelText: (d: any) => d.relationshipType,
+                        sourceNode: (d: any) => d.source,
+                        targetNode: (d: any) => d.target
+                    },
                 },
                 behaviors: [
                     "zoom-canvas",
                     "drag-element",
-                    {
-                        type: "drag-canvas",
-                        enable: (event: { shiftKey: boolean; targetType: string; }) => {
-                            return (
-                                event.shiftKey === false && event.targetType === "canvas"
-                            );
-                        },
-                    },
-
-                    {
-                        type: "click-select",
-                        enable: (e: { metaKey: any; ctrlKey: any; shiftKey: any; }) => {
-                            if (e?.metaKey || e?.ctrlKey || e.shiftKey) {
-                                return false;
-                            }
-                            return true;
-                        },
-                        multiple: true,
-                    },
-                    {
-                        type: "hover-activate",
-                        degree: 0,
-                    },
-                    {
-                        type: "lasso-select",
-                        trigger: ["shift"],
-                    }
+                    "drag-canvas"
                 ],
-
                 autoFit: "center",
                 plugins: [
                     {
@@ -90,7 +70,7 @@ function HanziGraph(graphData: any) {
                     },
                     {
                         type: 'legend',
-                        titleText: '节点 & 关系',
+                        titleText: '节点 & 关系 (Node & Relationship)',
                         nodeField: 'legendType',
                         edgeField: 'legendType',
                         trigger: 'click',
@@ -103,7 +83,8 @@ function HanziGraph(graphData: any) {
                         gridRow: 15,
                         itemLabelFontSize: 12,
                     },
-                ]
+                ],       
+                transforms: ['process-parallel-edges'],
             });
         }
 
@@ -116,7 +97,7 @@ function HanziGraph(graphData: any) {
         if (data !== undefined && data !== null) {
             graph.setData(data);
         }
-          
+
         graph.render().catch((error) => console.error(error));
 
         graph.on(GraphEvent.AFTER_LAYOUT, handleAfterLayout);

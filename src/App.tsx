@@ -2,13 +2,20 @@ import Search from './search/Search.tsx'
 
 import Counter from './components/Counter.tsx'
 import './App.css'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import AdvancedSearch from './search/AdvancedSearch.tsx'
 
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
         <Counter />
-        <Search />
+        <Router>
+            <Routes>
+                <Route path="/" element={ <Search /> } />  
+                <Route path="/advancedsearch" element={<AdvancedSearch />} />                
+            </Routes>
+        </Router>
     </>
   )
 }

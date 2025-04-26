@@ -9,10 +9,13 @@ import "../css/search.css";
 
 import HanziGraph from '../components/HanziGraph.tsx';
 import drawGraph from '../g6/g6Factory.ts';
+import { useNavigate } from 'react-router-dom';
 
 
 const ThemeContext = createContext(null);
-const Search = () =>{
+const Search = () => {
+    const navigate = useNavigate();
+    
     const [inputText, setInputText] = useState('');
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
 
@@ -30,7 +33,7 @@ const Search = () =>{
         }
     
         await drawGraph(inputText, ref, theme, hop)
-            .then(((dataFromDB) => setData(dataFromDB)));
+            .then((dataFromDB) => setData(dataFromDB));
     };
     console.log("Data fetched in Search File: ");
     console.log(data);
@@ -41,7 +44,7 @@ const Search = () =>{
     }, [])
 
     const handleAdvancedSearch = () => {
-        
+        navigate('/advancedsearch');
     };
 
     return (
