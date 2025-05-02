@@ -6,6 +6,8 @@ import FindShortestPaths from "./FindShortestPaths";
 import GetCentrality from "./GetCentrality";
 import HanziGraph from "../components/HanziGraph";
 
+import "../css/advancedSearch.css";
+
 function AdvancedSearch() {
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
 
@@ -18,6 +20,10 @@ function AdvancedSearch() {
         }
         setNavEvent(key);
     };
+
+    const handleDataFromChild = (dataFromChild) => {
+        setData(dataFromChild);
+    }
 
     return (
         <>
@@ -40,8 +46,8 @@ function AdvancedSearch() {
                     </Nav>
                 </Container>
             </Navbar>
-            {navEvent === 'searchbyhops' && <SearchByHops />}
-            {navEvent === 'searchCombination' && <SearchCombination />}
+            {navEvent === 'searchbyhops' && <SearchByHops sendDataToParent={handleDataFromChild}/>}
+            {navEvent === 'searchCombination' && <SearchCombination sendDataToParent={handleDataFromChild}/>}
             {navEvent === 'findShortestPaths' && <FindShortestPaths />}
             {navEvent === 'getCentrality' && <GetCentrality />}
 

@@ -38,7 +38,7 @@ function singleQuery(userInput: string, hop: number){
     return queryOne;
 }
 
-async function drawGraph(userInput: string, ref: any, context: any,  hop: number) {
+async function drawGraph(userInput: string, hop: number) {
     //document.getElementById(container).innerHTML = "";
     //const userInput = document.getElementById("text").value;
     let records, data;
