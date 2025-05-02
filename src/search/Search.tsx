@@ -9,15 +9,13 @@ import "../css/search.css";
 
 import HanziGraph from '../components/HanziGraph.tsx';
 import drawGraph from '../g6/g6Factory.ts';
+import { useNavigate } from 'react-router-dom';
 
-
-const ThemeContext = createContext(null);
-const Search = () =>{
+const Search = () => {
+    const navigate = useNavigate();
+    
     const [inputText, setInputText] = useState('');
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
-
-    const ref = React.useRef(null);
-    let theme = useContext(ThemeContext);
 
     const handleSearch = async () => {
         console.log("listener added with Input: " + inputText);
@@ -29,8 +27,8 @@ const Search = () =>{
             hop = 1;
         }
     
-        await drawGraph(inputText, ref, theme, hop)
-            .then(((dataFromDB) => setData(dataFromDB)));
+        await drawGraph(inputText, hop)
+            .then((dataFromDB) => setData(dataFromDB));
     };
     console.log("Data fetched in Search File: ");
     console.log(data);
@@ -41,7 +39,7 @@ const Search = () =>{
     }, [])
 
     const handleAdvancedSearch = () => {
-        
+        navigate('/advancedsearch');
     };
 
     return (

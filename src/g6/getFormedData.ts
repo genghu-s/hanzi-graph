@@ -20,10 +20,9 @@ function getFormedData(records: any) {
     };
 
     function addEdge(arr: any, edge: any) {
-        const key = edge.source + "-" + edge.target + "-" + edge.relationshipType;
-        if (!edgeMap.has(key)) {
+        if (!edgeMap.has(edge.id)) {
             arr.push(edge);
-            edgeMap.set(key, true);
+            edgeMap.set(edge.id, true);
         }
     }
 
@@ -149,6 +148,8 @@ function getFormedData(records: any) {
 
     function buildEdge(neo4jEdge: any) {
         let edge = {
+            id: neo4jEdge.start + "-" + neo4jEdge.end + "-" + neo4jEdge.type,
+            type: 'quadratic',
             source: neo4jEdge.start.toString(),
             target: neo4jEdge.end.toString(),
             relationshipType: neo4jEdge.type,
