@@ -1,3 +1,11 @@
 .hopsBtn {
     margin-top: 5px;
 }
+
+.combinationSearchContainer div {
+    margin-bottom: 5px;
+}
+
+.hiddenComponent {
+    visibility: hidden;
+}

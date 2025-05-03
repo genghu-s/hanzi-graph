@@ -30,18 +30,18 @@ function AdvancedSearch() {
             <Navbar>
                 <Container>
                     <Navbar.Brand href="/">Home</Navbar.Brand>
-                    <Nav fill variant="tabs" defaultActiveKey="searchbyhops" onSelect={handleSelect}>
+                    <Nav fill variant="tabs" onSelect={handleSelect}>
                     <Nav.Item>
-                        <Nav.Link eventKey="searchbyhops">Search By Hops</Nav.Link>
+                        <Nav.Link eventKey="searchbyhops" active={navEvent === 'searchbyhops'}>Search By Hops</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="searchCombination">Combination Search</Nav.Link>
+                        <Nav.Link eventKey="searchCombination" active={navEvent === 'searchCombination'}>Combination Search</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="findShortestPaths">Find Shortest Paths</Nav.Link>                    
+                        <Nav.Link eventKey="findShortestPaths" active={navEvent === 'findShortestPaths'}>Find Shortest Paths</Nav.Link>                    
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="getCentrality">Centrality</Nav.Link>
+                        <Nav.Link eventKey="getCentrality" active={navEvent === 'getCentrality'}>Centrality</Nav.Link>
                     </Nav.Item>
                     </Nav>
                 </Container>

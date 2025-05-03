@@ -1,9 +1,11 @@
 import { Form, Col, FloatingLabel, Row, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import drawGraph from "../g6/g6Factory";
+import { AdvancedSearchProps } from "../interfaces/AdvancedSearchProps";
 
 // eslint-disable-next-line
-const SearchByHops = ({ sendDataToParent }) => {
+
+const SearchByHops = ({ sendDataToParent }: AdvancedSearchProps) => {
     const [inputText, setInputText] = useState('');
     const [hops, setHops] = useState(0);
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
@@ -34,15 +36,15 @@ const SearchByHops = ({ sendDataToParent }) => {
     return (
         <>
             <div>
-                <Row className="g-2">
-                    <Col md xs="auto">
+                <Row className="justify-content-md-center">
+                    <Col xs lg="3">
                         <FloatingLabel controlId="floatingInputGrid" label="Enter 1 or More Chinese Charaters">
                             <Form.Control type="text" placeholder="Search"
                                 value={inputText}
                                 onChange={(e) => setInputText(e.target.value)} />
                         </FloatingLabel>
                     </Col>
-                    <Col md xs="auto">
+                    <Col xs lg="3">
                         <FloatingLabel
                             controlId="floatingSelectGrid"
                             label="Hops"
