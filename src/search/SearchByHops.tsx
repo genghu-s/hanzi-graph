@@ -15,6 +15,7 @@ const SearchByHops = ({ sendDataToParent }: AdvancedSearchProps) => {
 
         if (inputText === null || inputText === undefined || inputText.trim().length === 0) {
             alert("Please enter Chinese Characters to start!");
+            return;
         }
 
         if (hops !== 0) {

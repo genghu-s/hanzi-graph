@@ -11,17 +11,17 @@ import "../css/advancedSearch.css";
 function AdvancedSearch() {
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
 
-    const [navEvent, setNavEvent] = useState('searchbyhops');
+    const [navEvent, setNavEvent] = useState('findShortestPaths');
 
     const handleSelect = (key: any) => {
         console.log(key);
         if (key === '' || key === undefined) {
-            setNavEvent("searchbyhops");
+            setNavEvent("findShortestPaths");
         }
         setNavEvent(key);
     };
 
-    const handleDataFromChild = (dataFromChild) => {
+    const handleDataFromChild = (dataFromChild: any) => {
         setData(dataFromChild);
     }
 
@@ -48,7 +48,7 @@ function AdvancedSearch() {
             </Navbar>
             {navEvent === 'searchbyhops' && <SearchByHops sendDataToParent={handleDataFromChild}/>}
             {navEvent === 'searchCombination' && <SearchCombination sendDataToParent={handleDataFromChild}/>}
-            {navEvent === 'findShortestPaths' && <FindShortestPaths />}
+            {navEvent === 'findShortestPaths' && <FindShortestPaths sendDataToParent={handleDataFromChild}/>}
             {navEvent === 'getCentrality' && <GetCentrality />}
 
             <HanziGraph
