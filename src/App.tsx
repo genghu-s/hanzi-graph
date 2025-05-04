@@ -9,7 +9,7 @@ import AdvancedSearch from './search/AdvancedSearch.tsx'
 const App: React.FC = () => {
   return (
     <>
-        <Counter />
+        <h1>汉字三维网络</h1>
         <Router>
             <Routes>
                 <Route path="/" element={ <Search /> } />  

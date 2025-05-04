@@ -185,7 +185,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
         <>
             <Container className="combinationSearchContainer">
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>CHARACTER</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>汉字 (CHARACTER)</InputGroup.Text></Col>
                     <Col xs="auto"><InputGroup.Checkbox
                         checked={searchComb?.character.isChecked}
                         onChange={(e) => characterSelected(e.target.checked)}
@@ -196,7 +196,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         aria-label="Input Character" /></Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>COMPONENT</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>部件 (COMPONENT)</InputGroup.Text></Col>
                     <Col xs="auto"><InputGroup.Checkbox
                         checked={searchComb?.component.isChecked}
                         onChange={(e) => componentSelected(e.target.checked)} aria-label="Checkbox for following text input" /></Col>
@@ -206,7 +206,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         aria-label="Input Component" /></Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>SEMANTIC_COMPONENT</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>义符 (SEMANTIC COMPONENT)</InputGroup.Text></Col>
                     <Col xs="auto"><InputGroup.Checkbox
                         checked={searchComb?.semanticComponent.isChecked}
                         onChange={(e) => semanticComponentSelected(e.target.checked)} aria-label="Checkbox for following text input" /></Col>
@@ -216,7 +216,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         aria-label="Input Semantic Component" /></Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>PICTOGRAPHIC_RADICAL</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>形旁 (PICTOGRAPHIC RADICAL)</InputGroup.Text></Col>
                     <Col xs="auto"><InputGroup.Checkbox
                         checked={searchComb?.pictographicRadical.isChecked}
                         onChange={(e) => pictographicRadicalSelected(e.target.checked)} aria-label="Checkbox for following text input" /></Col>
@@ -226,7 +226,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         aria-label="Input Pictographic Radical" /></Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>PHONETIC_RADICAL</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>声旁 (PHONETIC RADICAL)</InputGroup.Text></Col>
                     <Col xs="auto"><InputGroup.Checkbox
                         checked={searchComb?.phoneticRadical.isChecked}
                         onChange={(e) => phoneticRadicalSelected(e.target.checked)} aria-label="Checkbox for following text input" /></Col>
@@ -236,7 +236,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         aria-label="Input Phonetic Radical" /></Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>INITIAL</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>声母 (INITIAL)</InputGroup.Text></Col>
                     <Col xs="auto"><InputGroup.Checkbox
                         checked={searchComb?.initial.isChecked}
                         onChange={(e) => initialSelected(e.target.checked)}
@@ -246,7 +246,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         onChange={(e) => setSearchComb({ ...searchComb, initial: { ...searchComb.initial, userInput: e.target.value } })} aria-label="Input Initial" /></Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>FINAL</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>韵母 (FINAL)</InputGroup.Text></Col>
                     <Col xs="auto"><InputGroup.Checkbox
                         checked={searchComb?.final.isChecked}
                         onChange={(e) => finalSelected(e.target.checked)}
@@ -257,7 +257,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         aria-label="Input Final" /></Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col xs lg="3"><InputGroup.Text>TONE</InputGroup.Text></Col>
+                    <Col xs lg="3"><InputGroup.Text>声调 (TONE)</InputGroup.Text></Col>
                     <Col xs="auto" className="hiddenComponent"><InputGroup.Checkbox aria-label="Checkbox for following text input" /></Col>
                     <Col xs lg="3">
                         <Form.Select
