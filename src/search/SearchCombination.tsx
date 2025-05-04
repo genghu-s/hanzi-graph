@@ -51,7 +51,7 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
     const handleSearchCombination = async () => {
         console.log("Search clicked");
 
-        let query_statement = '';
+        let queryStatement = '';
         let ret = 'RETURN ';
         let isQueryValid = false;
         for (let key in searchComb) {
@@ -66,13 +66,13 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         }
                         if (searchComb.character.userInput.length > 1) {
                             for (let c = 0; c < searchComb.character.userInput.length; c++) {
-                                query_statement = query_statement + `MATCH (ch${c}:CHARACTER {name:'${searchComb.character.userInput[c]}'})` + '\n';
-                                query_statement = query_statement + `MATCH r1${c} = (ch${c})-[]->(o)` + '\n';
+                                queryStatement = queryStatement + `MATCH (ch${c}:CHARACTER {name:'${searchComb.character.userInput[c]}'})` + '\n';
+                                queryStatement = queryStatement + `MATCH r1${c} = (ch${c})-[]->(o)` + '\n';
                                 ret = ret + `ch${c}, r1${c}` + ',';
                             }
                         } else {
-                            query_statement = query_statement + `MATCH (ch:CHARACTER {name:'${searchComb.character.userInput}'})` + '\n';
-                            query_statement = query_statement + `MATCH r1 = (ch)-[]->(o)` + '\n';
+                            queryStatement = queryStatement + `MATCH (ch:CHARACTER {name:'${searchComb.character.userInput}'})` + '\n';
+                            queryStatement = queryStatement + `MATCH r1 = (ch)-[]->(o)` + '\n';
                             ret = ret + 'ch, r1' + ',';
 
                         }
@@ -87,13 +87,13 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         }  
                         if (searchComb.component.userInput.length > 1) {
                             for (let c=0; c<searchComb.component.userInput.length; c++){
-                                query_statement = query_statement +  `MATCH (co${c}:COMPONENT {name:'${searchComb.component.userInput[c]}'})` + '\n';
-                                query_statement = query_statement + `MATCH r2${c} = (co${c})-[]->(o)` + '\n';
+                                queryStatement = queryStatement +  `MATCH (co${c}:COMPONENT {name:'${searchComb.component.userInput[c]}'})` + '\n';
+                                queryStatement = queryStatement + `MATCH r2${c} = (co${c})-[]->(o)` + '\n';
                                 ret = ret + `co${c}, r2${c}` + ',';
                               }
                         } else {
-                            query_statement = query_statement +  `MATCH (co:COMPONENT {name:'${searchComb.component.userInput}'})` + '\n';
-                            query_statement = query_statement + `MATCH r2 = (co)-[]->(o)` + '\n';
+                            queryStatement = queryStatement +  `MATCH (co:COMPONENT {name:'${searchComb.component.userInput}'})` + '\n';
+                            queryStatement = queryStatement + `MATCH r2 = (co)-[]->(o)` + '\n';
                             ret = ret + 'co, r2' + ',';
                         }
                     }
@@ -106,8 +106,8 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                             isQueryValid = true;
                         }  
                             
-                        query_statement = query_statement +  `MATCH (sc:SEMANTIC_COMPONENT {name:'${searchComb.semanticComponent.userInput}'})` + '\n';
-                        query_statement = query_statement + `MATCH r3 = (sc)-[]->(o)` + '\n';
+                        queryStatement = queryStatement +  `MATCH (sc:SEMANTIC_COMPONENT {name:'${searchComb.semanticComponent.userInput}'})` + '\n';
+                        queryStatement = queryStatement + `MATCH r3 = (sc)-[]->(o)` + '\n';
                         ret = ret + 'sc, r3' + ',';
                     }
                     break;
@@ -118,8 +118,8 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         if (!isQueryValid) {
                             isQueryValid = true;
                         }  
-                        query_statement = query_statement +  `MATCH (pr:PICTOGRAPHIC_RADICAL {name:'${searchComb.pictographicRadical.userInput}'})` + '\n';
-                        query_statement = query_statement + `MATCH r4 = (pr)-[]->(o)` + '\n';
+                        queryStatement = queryStatement +  `MATCH (pr:PICTOGRAPHIC_RADICAL {name:'${searchComb.pictographicRadical.userInput}'})` + '\n';
+                        queryStatement = queryStatement + `MATCH r4 = (pr)-[]->(o)` + '\n';
                         ret = ret + 'pr, r4' + ',';
                     }
                     break;
@@ -130,8 +130,8 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         if (!isQueryValid) {
                             isQueryValid = true;
                         }  
-                        query_statement = query_statement +  `MATCH (ph:PHONETIC_RADICAL {name:'${searchComb.phoneticRadical.userInput}'})` + '\n';
-                        query_statement = query_statement + `MATCH r5 = (ph)-[]->(o)` + '\n';
+                        queryStatement = queryStatement +  `MATCH (ph:PHONETIC_RADICAL {name:'${searchComb.phoneticRadical.userInput}'})` + '\n';
+                        queryStatement = queryStatement + `MATCH r5 = (ph)-[]->(o)` + '\n';
                         ret = ret + 'ph, r5' + ',';
                     }
                     break;
@@ -142,8 +142,8 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         if (!isQueryValid) {
                             isQueryValid = true;
                         }  
-                        query_statement = query_statement +  `MATCH (i:INITIAL {name:'${searchComb.initial.userInput}'})` + '\n';
-                        query_statement = query_statement + `MATCH r6 = (i)-[]->(o)` + '\n';
+                        queryStatement = queryStatement +  `MATCH (i:INITIAL {name:'${searchComb.initial.userInput}'})` + '\n';
+                        queryStatement = queryStatement + `MATCH r6 = (i)-[]->(o)` + '\n';
                         ret = ret + 'i, r6' + ',';
                     }
                     break;
@@ -154,16 +154,16 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         if (!isQueryValid) {
                             isQueryValid = true;
                         }  
-                        query_statement = query_statement +  `MATCH (f:FINAL {name:'${searchComb.final.userInput}'})` + '\n';
-                        query_statement = query_statement + `MATCH r7 = (f)-[]->(o)` + '\n';
+                        queryStatement = queryStatement +  `MATCH (f:FINAL {name:'${searchComb.final.userInput}'})` + '\n';
+                        queryStatement = queryStatement + `MATCH r7 = (f)-[]->(o)` + '\n';
                         ret = ret + 'f, r7' + ',';
                     }
                     break;
                 case "tone":
                     if (searchComb.tone !== undefined
                         && searchComb.tone !== '') {
-                        query_statement = query_statement +  `MATCH (t:TONE {alias: '${searchComb.tone}'})` + '\n';
-                        query_statement = query_statement + `MATCH r8 = (t)-[]->(o)` + '\n';
+                        queryStatement = queryStatement +  `MATCH (t:TONE {alias: '${searchComb.tone}'})` + '\n';
+                        queryStatement = queryStatement + `MATCH r8 = (t)-[]->(o)` + '\n';
                         ret = ret + 't, r8' + ',';
                     }
                     break;
@@ -172,10 +172,11 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
 
         if (!isQueryValid) {
             alert("Please select search combination to start!");
+            return;
         }
-        query_statement = query_statement + ret + 'o';
-        console.log(query_statement);
-        const records = await getResultsFromDB(query_statement);
+        queryStatement = queryStatement + ret + 'o';
+        console.log(queryStatement);
+        const records = await getResultsFromDB(queryStatement);
         const rawData = await getFormedData(records);
         setData(rawData.data);
     }

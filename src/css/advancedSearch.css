@@ -9,3 +9,11 @@
 .hiddenComponent {
     visibility: hidden;
 }
+
+.shortestPathSearchContainer div {
+    margin-bottom: 5px;
+}
+
+.nodeLabel {
+    margin-top: 32px;
+}
