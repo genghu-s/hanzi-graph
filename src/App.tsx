@@ -9,7 +9,7 @@ import AdvancedSearch from './search/AdvancedSearch.tsx'
 const App: React.FC = () => {
   return (
     <>
-        <h1>汉字三维网络</h1>
+        <h1><img src="../public/Hanzi_logo.png" alt="My Image" style={{ width: '50px', marginRight: '10px' }} />汉字三维网络</h1>
         <Router>
             <Routes>
                 <Route path="/" element={ <Search /> } />  
