@@ -1,4 +1,4 @@
-import { Button, Col, Container, FloatingLabel, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, FloatingLabel, Form, InputGroup, Row, Table } from "react-bootstrap";
 import { AdvancedSearchProps } from "../interfaces/AdvancedSearchProps";
 import { SearchPath } from "../interfaces/SearchPath";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import getResultsFromDB from "../neo4j/neo4jService";
 const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
     const [searchPath, setSearchPath] = useState<SearchPath>(new SearchPath());
+    const [recordInfo, setRecordInfo] = useState<any>();
 
     useEffect(() => {
         sendDataToParent(data);
@@ -103,6 +104,7 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
         console.log(queryStatement);
         const records = await getResultsFromDB(queryStatement);
         const rawData = await getFormedData(records);
+        setRecordInfo(records.records);
         setData(rawData.data);
     }
 
@@ -125,71 +127,95 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
                 </Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>COMPONENT_OF</InputGroup.Text></Col>
+                <Col xs lg="3"><InputGroup.Text>COMPONENT_OF</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isComponentOf}
                     onChange={(e) => setSearchPath({...searchPath, isComponentOf: e.target.checked})}
                     aria-label="COMPONENT_OF" /></Col>
-            </Row>
-            <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>SEMANTIC_COMPONENT_OF</InputGroup.Text></Col>
+                <Col xs lg="1"></Col>
+                <Col xs lg="3"><InputGroup.Text>SEMANTIC_COMPONENT_OF</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isSemanticComponentOf}
                     onChange={(e) => setSearchPath({...searchPath, isSemanticComponentOf: e.target.checked})}
                     aria-label="SEMANTIC_COMPONENT_OF" /></Col>
             </Row>
+            
             <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>PICTOGRAPHIC_RADICAL_OF</InputGroup.Text></Col>
+                <Col xs lg="3"><InputGroup.Text>PICTOGRAPHIC_RADICAL_OF</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isPictographicRadicalOf}
                     onChange={(e) => setSearchPath({...searchPath, isPictographicRadicalOf: e.target.checked})}
                     aria-label="PICTOGRAPHIC_RADICAL_OF" /></Col>
-            </Row>
-            <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>PHONETIC_RADICAL_OF</InputGroup.Text></Col>
+                <Col xs lg="1"></Col>
+                <Col xs lg="3"><InputGroup.Text>PHONETIC_RADICAL_OF</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isPhoneticRadicalOf}
                     onChange={(e) => setSearchPath({...searchPath, isPhoneticRadicalOf: e.target.checked})}
                     aria-label="PHONETIC_RADICAL_OF" /></Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>INITIAL_OF</InputGroup.Text></Col>
+                <Col xs lg="3"><InputGroup.Text>INITIAL_OF</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isInitialOf}
                     onChange={(e) => setSearchPath({...searchPath, isInitialOf: e.target.checked})}
                     aria-label="INITIAL_OF" /></Col>
-            </Row>
-            <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>FINAL_OF</InputGroup.Text></Col>
+                <Col xs lg="1"></Col>
+                <Col xs lg="3"><InputGroup.Text>FINAL_OF</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isFinalOf}
                     onChange={(e) => setSearchPath({...searchPath, isFinalOf: e.target.checked})}
                     aria-label="FINAL_OF" /></Col>
             </Row>
             <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>TONE_OF</InputGroup.Text></Col>
+                <Col xs lg="3"><InputGroup.Text>TONE_OF</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isToneOf}
                     onChange={(e) => setSearchPath({...searchPath, isToneOf: e.target.checked})}
                     aria-label="TONE_OF" /></Col>
-            </Row>
-            <Row className="justify-content-md-center">
-                <Col xs lg="5"><InputGroup.Text>TRANSFORMED_TO</InputGroup.Text></Col>
+                <Col xs lg="1"></Col>
+                <Col xs lg="3"><InputGroup.Text>TRANSFORMED_TO</InputGroup.Text></Col>
                 <Col xs="auto"><InputGroup.Checkbox
                     checked={searchPath.isTransformedTo}
                     onChange={(e) => setSearchPath({...searchPath, isTransformedTo: e.target.checked})}
                     aria-label="TRANSFORMED_TO" /></Col>
             </Row>
             <Row className="justify-content-md-center">
+                <Col xs lg="7"></Col>
                 <Col xs lg="1">
                     <Button className="hopsBtn" variant="primary" size="lg"
                         onClick={handleSearchShortestPath}>Search</Button>
                 </Col>
-                <Col xs lg="1"></Col>
-                <Col xs="auto" className="hiddenComponent"><InputGroup.Checkbox aria-label="Checkbox for following text input" /></Col>
-                <Col xs lg="3"></Col>
+                
             </Row>
         </Container>
+        {recordInfo !== undefined && recordInfo !== '' && <div>
+            <h2>所有的最短路径</h2>
+        <Table responsive>
+            <thead>
+                <tr>
+                <th>序号(Number)</th>
+                <th>节点(Node)</th>
+                <th>关系(relationship)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Array.from({ length: recordInfo.length }).map((_, index) => (
+                    <tr>
+                        <td key={index + 1}>
+                            {index + 1}
+                        </td>
+                        <td>
+                           {recordInfo[index]._fields[1].join(" , ")} 
+                        </td>
+                        
+                        <td>
+                           {recordInfo[index]._fields[2].join(" , ")} 
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+            </Table>
+        </div>}
         </>
     );
 };

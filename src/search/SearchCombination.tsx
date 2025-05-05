@@ -272,14 +272,15 @@ const SearchCombination = ({ sendDataToParent }: AdvancedSearchProps) => {
                         </Form.Select>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center"> 
+                    <Col xs lg="1"></Col>
+                    <Col xs="auto" className="hiddenComponent"><InputGroup.Checkbox aria-label="Checkbox for following text input" /></Col>
+                    <Col xs="auto" className="hiddenComponent"><InputGroup.Checkbox aria-label="Checkbox for following text input" /></Col>
+                    <Col xs lg="3"></Col>
                     <Col xs lg="1">
                         <Button className="hopsBtn" variant="primary" size="lg"
                             onClick={handleSearchCombination}>Search</Button>
                     </Col>
-                    <Col xs lg="2"></Col>
-                    <Col xs="auto" className="hiddenComponent"><InputGroup.Checkbox aria-label="Checkbox for following text input" /></Col>
-                    <Col xs lg="3"></Col>
                 </Row>
             </Container>
         </>

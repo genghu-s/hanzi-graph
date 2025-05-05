@@ -93,9 +93,17 @@ function HanziGraph(graphData: any) {
             graph?.fitView();
         };
 
-
+        const legend = document.querySelector('#legend');
         if (data !== undefined && data !== null) {
             graph.setData(data);
+            if (legend !== null) {
+                legend.style.display= "block";
+            }
+        } else {
+            
+            if (legend !== null) {
+                legend.style.display= "none";
+            }
         }
 
         graph.render().catch((error) => console.error(error));
