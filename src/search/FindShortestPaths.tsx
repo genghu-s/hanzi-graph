@@ -1,4 +1,4 @@
-import { Button, Col, Container, FloatingLabel, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, FloatingLabel, Form, InputGroup, Row, Table } from "react-bootstrap";
 import { AdvancedSearchProps } from "../interfaces/AdvancedSearchProps";
 import { SearchPath } from "../interfaces/SearchPath";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import getResultsFromDB from "../neo4j/neo4jService";
 const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
     const [searchPath, setSearchPath] = useState<SearchPath>(new SearchPath());
+    const [recordInfo, setRecordInfo] = useState<any>();
 
     useEffect(() => {
         sendDataToParent(data);
@@ -103,6 +104,7 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
         console.log(queryStatement);
         const records = await getResultsFromDB(queryStatement);
         const rawData = await getFormedData(records);
+        setRecordInfo(records.records);
         setData(rawData.data);
     }
 
@@ -190,6 +192,34 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
                 <Col xs lg="3"></Col>
             </Row>
         </Container>
+        <div>
+            <h2>所有的最短路径</h2>
+        <Table responsive>
+            <thead>
+                <tr>
+                <th>序号(Number)</th>
+                <th>节点(Node)</th>
+                <th>关系(relationship)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Array.from({ length: recordInfo.length }).map((_, index) => (
+                    <tr>
+                        <td key={index + 1}>
+                            {index + 1}
+                        </td>
+                        <td>
+                           {recordInfo[index]._fields[1].join(" , ")} 
+                        </td>
+                        
+                        <td>
+                           {recordInfo[index]._fields[2].join(" , ")} 
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+            </Table>
+        </div>
         </>
     );
 };
