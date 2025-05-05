@@ -11,12 +11,12 @@ import "../css/advancedSearch.css";
 function AdvancedSearch() {
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
 
-    const [navEvent, setNavEvent] = useState('findShortestPaths');
+    const [navEvent, setNavEvent] = useState('searchbyhops');
 
     const handleSelect = (key: any) => {
         console.log(key);
         if (key === '' || key === undefined) {
-            setNavEvent("findShortestPaths");
+            setNavEvent("searchbyhops");
         }
         setNavEvent(key);
     };

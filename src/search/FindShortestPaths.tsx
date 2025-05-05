@@ -189,8 +189,10 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
                 
             </Row>
         </Container>
+        
         {recordInfo !== undefined && recordInfo !== '' && <div>
             <h2>所有的最短路径</h2>
+        <div id="shortestPathTable">
         <Table responsive>
             <thead>
                 <tr>
@@ -216,6 +218,8 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
                 ))}
             </tbody>
             </Table>
+        </div>
+        
         </div>}
         </>
     );
