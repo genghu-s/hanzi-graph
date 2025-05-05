@@ -1,5 +1,4 @@
-import { ParseResult } from 'papaparse';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { usePapaParse } from 'react-papaparse';
 
