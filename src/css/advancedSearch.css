@@ -17,3 +17,8 @@
 .nodeLabel {
     margin-top: 32px;
 }
+
+#centrality {
+    width: 1200px;
+    height: 600px,
+}

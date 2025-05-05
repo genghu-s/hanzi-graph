@@ -51,9 +51,9 @@ function AdvancedSearch() {
             {navEvent === 'findShortestPaths' && <FindShortestPaths sendDataToParent={handleDataFromChild}/>}
             {navEvent === 'getCentrality' && <GetCentrality />}
 
-            <HanziGraph
+            {navEvent !== 'getCentrality' && <HanziGraph
                 graphData={data}
-            />
+            />}
         </>
     );
 }
