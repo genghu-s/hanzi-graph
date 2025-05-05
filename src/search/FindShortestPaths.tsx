@@ -102,8 +102,9 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
         `;
 
         console.log(queryStatement);
-        const records = await getResultsFromDB(queryStatement);
+        const records: any = await getResultsFromDB(queryStatement);
         const rawData = await getFormedData(records);
+        
         setRecordInfo(records.records);
         setData(rawData.data);
     }
