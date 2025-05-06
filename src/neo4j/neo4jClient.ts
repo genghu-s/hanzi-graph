@@ -11,7 +11,7 @@ import neo4j from "neo4j-driver";
 const dbConfig = {
     host: "bolt://localhost:7687",
     neo4j_name: "neo4j",
-    password: 'password'
+    password: 'gs365711146$'
 };
 
 async function queryNeo4j(query: string) {
