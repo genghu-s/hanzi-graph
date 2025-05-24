@@ -1,6 +1,5 @@
 import Search from './search/Search.tsx'
 
-import Counter from './components/Counter.tsx'
 import './App.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import AdvancedSearch from './search/AdvancedSearch.tsx'

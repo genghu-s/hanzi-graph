@@ -1,5 +1,4 @@
 import  getResultsFromDB  from "../neo4j/neo4jService.ts";
-import handleGraph from "./g6Graph.ts";
 import getFormedData from './getFormedData.ts';
 
 function formQueryWithKey(myArray: any, keyName: any, hop=2) {
@@ -56,7 +55,6 @@ async function drawGraph(userInput: string, hop: number) {
         records = await getResultsFromDB(queryOne);
         data = await getFormedData(records);
     }
-    // handleGraph(data.data, ref, context);
 
     return data.data;
 }

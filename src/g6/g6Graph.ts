@@ -1,8 +1,6 @@
-import { Graph, Legend } from '@antv/g6';
+import { Graph } from '@antv/g6';
 
-import legendData from '../configs/legendData';
-
-function handleGraph(data: any, ref: any, context: any) {
+function handleGraph(data: any, ref: any) {
     // const legend = new Legend(context, {
     //     data: legendData,
     //     align: 'center',

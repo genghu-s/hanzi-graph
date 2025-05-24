@@ -1,5 +1,4 @@
 import { isNode, isRelationship, Node } from "neo4j-driver";
-import { Neo4jNode } from "../interfaces/Neo4jNode";
 import { CharColorMap, LineColorMap, NodeColorMap } from "./staticMaps";
 
 function getFormedData(records: any) {
