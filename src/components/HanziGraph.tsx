@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Background, Graph, GraphData, GraphEvent } from "@antv/g6";
+import { Graph, GraphData, GraphEvent } from "@antv/g6";
 
 import "../css/HanziGraph.css";
 import createTooltipContent from "./Tooltip";
@@ -93,7 +93,7 @@ function HanziGraph(graphData: any) {
             graph?.fitView();
         };
 
-        const legend = document.querySelector('#legend');
+        const legend = document.querySelector('#legend') as HTMLElement;
         if (data !== undefined && data !== null) {
             graph.setData(data);
             if (legend !== null) {

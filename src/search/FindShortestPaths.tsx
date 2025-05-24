@@ -1,4 +1,4 @@
-import { Button, Col, Container, FloatingLabel, Form, InputGroup, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Form, InputGroup, Row, Table } from "react-bootstrap";
 import { AdvancedSearchProps } from "../interfaces/AdvancedSearchProps";
 import { SearchPath } from "../interfaces/SearchPath";
 import { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ const FindShortestPaths = ({ sendDataToParent }: AdvancedSearchProps) => {
     });
 
     const checkIfNodeIsValid = (value: any): boolean => {
-        if (searchPath.nodeOne === undefined || searchPath.nodeOne.length !== 1) {
+        if (value === undefined || value.length !== 1) {
             return false;
         }
 

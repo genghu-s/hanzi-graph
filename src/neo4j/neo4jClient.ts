@@ -9,9 +9,9 @@ import neo4j from "neo4j-driver";
 // };
   
 const dbConfig = {
-    host: "bolt://localhost:7687",
+    host: "neo4j+s://b0c504e4.databases.neo4j.io",
     neo4j_name: "neo4j",
-    password: 'gs365711146$'
+    password: '1234'
 };
 
 async function queryNeo4j(query: string) {
@@ -31,7 +31,7 @@ async function queryNeo4j(query: string) {
         defaultAccessMode: neo4j.session.READ
     });
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         // Run a Cypher statement, reading the result in a streaming manner as records arrive:
         resolve(session.executeRead(txc => {
             // used transaction will be committed automatically, no need for explicit commit/rollback
