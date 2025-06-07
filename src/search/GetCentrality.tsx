@@ -8,7 +8,7 @@ const GetCentrality =  () => {
     const { readString } = usePapaParse();
 
     useEffect(() => {
-        fetch('../../public/all_nodes_export.csv')
+        fetch('/all_nodes_export.csv')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
