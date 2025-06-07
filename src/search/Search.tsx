@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -14,20 +14,17 @@ import { useNavigate } from 'react-router-dom';
 const Search = () => {
     const navigate = useNavigate();
     
-    const [inputText, setInputText] = useState('');
+    const inputRef = useRef(null);
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
-
     const handleSearch = async () => {
-        console.log("listener added with Input: " + inputText);
-        
         var hop = 1;
-        if (inputText.length > 1) {
+        if (inputRef.current.value.length > 1) {
             hop = 2;
         } else {
             hop = 1;
         }
     
-        await drawGraph(inputText, hop)
+        await drawGraph(inputRef.current.value, hop)
             .then((dataFromDB) => setData(dataFromDB));
     };
     console.log("Data fetched in Search File: ");
@@ -52,8 +49,7 @@ const Search = () => {
                     <Col className="searchCol shadow-none">
                         <Form.Control placeholder="search..." 
                         className="searchText"
-                        value={inputText} 
-                        onChange={(e) => setInputText(e.target.value)} /></Col>
+                        ref={inputRef} /></Col>
                     <Col>
                         <Button variant="primary" data-toggle="tooltip" title="Search" onClick={handleSearch}>搜索</Button></Col>
                     <Col>
