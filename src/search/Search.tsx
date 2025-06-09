@@ -14,22 +14,28 @@ import { useNavigate } from 'react-router-dom';
 const Search = () => {
     const navigate = useNavigate();
     
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const [data, setData] = useState<{ nodes: never[]; edges: never[]; }>();
     const handleSearch = async () => {
         var hop = 1;
-        if (inputRef.current.value.length > 1) {
+        if (inputRef.current && inputRef.current.value.length > 1) {
             hop = 2;
         } else {
             hop = 1;
         }
     
-        await drawGraph(inputRef.current.value, hop)
-            .then((dataFromDB) => setData(dataFromDB));
+        if (inputRef.current) {
+            await drawGraph(inputRef.current.value, hop)
+                .then((dataFromDB) => setData(dataFromDB));
+        }
     };
 
     const handleWriter = () => {
-        navigate(`/write/${inputRef.current.value}`);
+        if (inputRef.current && inputRef.current.value && inputRef.current.value.length === 1) {
+            navigate(`/write/${inputRef.current.value}`);
+        } else {
+            navigate(`/write/字`);
+        }
     }
 
 
