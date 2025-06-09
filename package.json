@@ -12,6 +12,7 @@
   "dependencies": {
     "@antv/g6": "^5.0.45",
     "bootstrap": "^5.3.5",
+    "hanzi-writer": "^3.7.2",
     "neo4j-driver": "^5.28.1",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",

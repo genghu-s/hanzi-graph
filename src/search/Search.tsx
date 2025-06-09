@@ -27,6 +27,12 @@ const Search = () => {
         await drawGraph(inputRef.current.value, hop)
             .then((dataFromDB) => setData(dataFromDB));
     };
+
+    const handleWriter = () => {
+        navigate(`/write/${inputRef.current.value}`);
+    }
+
+
     console.log("Data fetched in Search File: ");
     console.log(data);
 
@@ -52,6 +58,8 @@ const Search = () => {
                         ref={inputRef} /></Col>
                     <Col>
                         <Button variant="primary" data-toggle="tooltip" title="Search" onClick={handleSearch}>搜索</Button></Col>
+                    <Col>
+                        <Button variant="primary" data-toggle="tooltip" title="Practice Writing" onClick={handleWriter}>写一写</Button></Col>
                     <Col>
                         <Button variant="primary" data-toggle="tooltip" 
                         className="advancedSearchText" title="Advanced Search" onClick={handleAdvancedSearch}>高级搜索</Button></Col>
