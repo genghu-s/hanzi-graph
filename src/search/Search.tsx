@@ -31,8 +31,10 @@ const Search = () => {
     };
 
     const handleWriter = () => {
-        if (inputRef.current && inputRef.current.value && inputRef.current.value.length === 1) {
-            navigate(`/write/${inputRef.current.value}`);
+        if (inputRef.current && inputRef.current.value && inputRef.current.value.length > 0) {
+            const character = inputRef.current.value[0];
+            console.log(character);
+            navigate(`/write/${character}`);
         } else {
             navigate(`/write/字`);
         }
